@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Schedule</title>
+  <style>
+   @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', monospace; /* Terminal look */
+    }
+
+    /* Body Styling */
+    body {
+      background-color: #000; /* Hacker style */
+      color: #00ff00; /* Neon green text */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+    }
+
+    /* Time Display */
+    .time-display {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 18px;
+      color: #00ff00;
+      text-shadow: 0px 0px 10px #00ff00;
+    }
+
+    /* Schedule Container */
+    .schedule-container {
+      text-align: center;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .schedule-container h2 {
+      margin-bottom: 20px;
+      color: #00ff00; /* Neon green */
+    }
+    h2 {
+      font-size: 22px;
+    }
+    h1 {
+      color: #00ff00; /* Neon green */
+      font-size: 26px;
+    }
+
+    label {
+      font-size: 12px;
+    }
+
+    /* Days Row */
+    .days {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* Individual Day Block */
+    .day {
+      background-color: #004400; /* Dark green block */
+      flex: 1;
+      min-width: 18%;
+      height: 200px;
+      border-radius: 15px;
+      padding: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #00ff00; /* Neon green */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s ease-in-out;
+      cursor: pointer;
+      box-shadow: 0px 0px 15px #00ff00; /* Glowing effect */
+    }
+
+    /* Hover Effect */
+    .day:hover {
+      background-color: #00cc00; /* Brighter green on hover */
+    }
+
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #001f00; /* Dark green background */
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 80%;
+      max-width: 400px;
+      position: relative;
+      color: #00ff00; /* Neon green */
+      box-shadow: 0px 0px 15px #00ff00; /* Glowing effect */
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #00ff00; /* Neon green */
+    }
+
+    /* Glitch animation for text */
+    @keyframes glitch {
+      0% {
+        text-shadow: 2px 0px #00ff00, -2px 0px #00ff00;
+      }
+      50% {
+        text-shadow: 2px -2px #00ff00, -2px 2px #00ff00;
+      }
+      100% {
+        text-shadow: -2px 0px #00ff00, 2px 0px #00ff00;
+      }
+    }
+
+    /* Rotating image effect */
+    .asscat1 {
+      margin-left: 10px;
+      height: 120px;
+      width: 95px;
+      border-radius: 50%;
+      filter: drop-shadow(1px 1px 10px #00ff00);
+      animation: spin 5s linear infinite;
+    }
+
+    @keyframes spin { 
+      100% { transform: rotate(360deg); } 
+    }
+
+    .ryel {
+      margin-top: 2rem;
+      font-size: 12px;
+      color: #00ff00;
+    }
+
+    a {
+      text-decoration: none;
+      color: #00ff00;
+      text-decoration: underline;
+    }
+
+    .opaw1 {
+      margin-left: 10px;
+      height: 95px;
+      width: 95px;
+      border-radius: 50%;
+      filter: drop-shadow(1px 1px 10px #00ff00);
+      animation: shadow-grow-shrink 2s infinite;
+    }
+
+    @keyframes shadow-grow-shrink {
+      0% {
+        filter: drop-shadow(1px 1px 10px #00ff00);
+      }
+      50% {
+        filter: drop-shadow(1px 1px 20px #00ff00); /* shadow gets larger */
+      }
+      100% {
+        filter: drop-shadow(1px 1px 10px #00ff00); /* shadow shrinks back */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Time Display -->
+  <div class="time-display" id="currentTime">Loading time...</div>
+
+  <div class="schedule-container">
+   <div class="opaw">
+      <img class="opaw1" src="logo.jpg">
+    </div>
+    <div class="asscat">
+      <img class="asscat1" src="asscat.png">
+      <img class="asscat1" src="ccis.png">
+    </div>
+    <h1>BSIT SECTION 1A</h1>
+    <h2>CLASS SCHEDULE</h2>
+    <label>(Click Schedule)</label>
+    <div class="days">
+      <div class="day" onclick="showSchedule('Monday')">Monday</div>
+      <div class="day" onclick="showSchedule('Tuesday')">Tuesday</div>
+      <div class="day" onclick="showSchedule('Wednesday')">Wednesday</div>
+      <div class="day" onclick="showSchedule('Thursday')">Thursday</div>
+      <div class="day" onclick="showSchedule('Friday')">Friday</div>
+    </div>
+    <p class="ryel">Powered by: <a href="https://www.facebook.com/lenneth.quibuyen.9">ryeee</a>❤️</p>
+    <div class="visitor">
+      <script type="text/javascript" src="https://freehitcounters.org/count/fsrf"></script><br>
+      <a href='ttps://www.easybooking.eu/'></a> <script type='text/javascript' src='ttps://whomania.com/ctr?id=ad0ce805e4ec7382e6b5b5549ec49f2f64489656'></script>
+   </div>
+  </div>
+
+  <!-- Modal for Class Schedule -->
+  <div id="scheduleModal" class="modal">
+    <div class="modal-content" id="modalContent">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2 id="dayTitle">Day</h2>
+      <p id="daySchedule">Class schedule will appear here.</p>
+    </div>
+  </div>
+
+  <script>
+    // Update the current time every second
+  function updateTime() {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    
+    // Convert to 12-hour format
+    hours = hours % 12;
+    hours = hours ? hours : 12; // If hour is 0, display as 12
+
+    const currentTime = `${hours}:${minutes}:${seconds} ${ampm}`;
+    document.getElementById("currentTime").textContent = currentTime;
+  }
+
+  // Call updateTime every second
+  setInterval(updateTime, 1000);
+
+  // Initial call to display time immediately
+  updateTime();
+
+    // Sample schedules for each day
+    const schedules = {
+      Monday: "09:00 AM - 10:30 AM GE 04 (Online class),,,\n11:00 AM - 12:00 PM GE 05 (CEIS 105),,,\n02:00 PM - 05:00 PM ITCC 101 (ICT 104)",
+      Tuesday: "09:00 AM - 12:00 PM ITCC 100 (Lab activity at home),,,\n01:00 PM - 02:30 PM ITELEC 100 (CEIS 209)",
+      Wednesday: "08:00 AM - 09:30 AM GE 04 (CAS 04),,\n11:00 AM - 12:00 PM GE 05 (F2F),,,\n02:30 PM - 04:30 PM GE 01 (Online class)",
+      Thursday: "09:00 AM - 10:00 AM PATHFIT 1 (CEIS GYM),,,\n11:00 AM - 12:00 PM GE 01 (CAS 07),,,\n001:00 PM  02:30 PM ITELEC 100 (CEIS 208),,,\n03:00 PM - 05:00 PM ITCC 101 (CEIS 206)",
+      Friday: "11:00 AM - 12:00 PM GE 05 (CEIS 105 Online class),,,\n03:00 PM - 05:00 PM ITCC 101 (CEIS 207)",
+    };
+
+    // Function to display the modal with the schedule
+    function showSchedule(day) {
+      const modal = document.getElementById("scheduleModal");
+      const dayTitle = document.getElementById("dayTitle");
+      const daySchedule = document.getElementById("daySchedule");
+
+      // Update modal content
+      dayTitle.textContent = `${day} Schedule`;
+      daySchedule.textContent = schedules[day];
+
+      // Show the modal
+      modal.style.display = "flex";
+    }
+
+    // Function to close the modal
+    function closeModal() {
+      document.getElementById("scheduleModal").style.display = "none";
+    }
+  </script>
+  
+</body>
+</html>
